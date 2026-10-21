@@ -1,6 +1,38 @@
-= An Eventuate project
+= Eventuate Common Testcontainers
 
 image::https://eventuate.io/i/logo.gif[]
 
 This project is part of http://eventuate.io[Eventuate], which is a microservices collaboration platform.
 
+It contains the generic https://testcontainers.com/[Testcontainers] base classes that the other Eventuate projects use to define and start their containers in tests.
+The database containers are in https://github.com/eventuate-foundation/eventuate-common-database[eventuate-common-database], and the ZooKeeper container is in https://github.com/eventuate-foundation/eventuate-common-zookeeper[eventuate-common-zookeeper].
+
+It publishes these artifacts under the group `io.eventuate.common.testcontainers`:
+
+|===
+| Artifact | Package | Contents
+
+| `eventuate-common-testcontainers`
+| `io.eventuate.common.testcontainers`
+| `EventuateGenericContainer`, `PropertyProvidingContainer`, `PreStartContainerEnv`, `ContainerUtil`, `ContainerTestUtil`, `ReusableNetworkFactory` and `AliasingDynamicPropertyRegistry`
+
+| `eventuate-common-testcontainers-bom`
+|
+| The BOM for these artifacts
+|===
+
+Its version is set in a consumer's `gradle.properties` with the property `eventuateCommonTestcontainersVersion`.
+
+== Migrating from eventuate-common
+
+This module was previously published by https://github.com/eventuate-foundation/eventuate-common[eventuate-common] under the group `io.eventuate.common`, together with the database and ZooKeeper containers.
+The package is unchanged.
+The module declares the capability of its old coordinates, so a Gradle build that gets both the old and the new artifact fails with a capability conflict.
+
+The https://github.com/cer/openrewrite-recipes/blob/master/eventuate-common-split/README.adoc[migration guide] lists the new groups, version properties and packages, and describes the OpenRewrite recipe that migrates a consumer.
+
+== Building
+
+----
+./gradlew build
+----
