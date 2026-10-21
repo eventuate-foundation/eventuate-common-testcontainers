@@ -14,7 +14,7 @@ public class ContainerUtil {
     public static String findImage(String imageBaseName, String versionPropertiesFile) {
         Properties props = new Properties();
         try {
-            props.load(EventuateMySqlContainer.class.getResourceAsStream("/" + versionPropertiesFile));
+            props.load(ContainerUtil.class.getResourceAsStream("/" + versionPropertiesFile));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
